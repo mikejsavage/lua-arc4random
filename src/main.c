@@ -29,7 +29,7 @@
 #define LUAINT_MAX ( sizeof( lua_Integer ) == 32 ? INT32_MAX : INT64_MAX )
 
 static int luaarc4_random( lua_State * const L ) {
-	// http://marc.info/?l=openbsd-tech&m=142175806616927&w=2
+	/* http://marc.info/?l=openbsd-tech&m=142175806616927&w=2 */
 	if( lua_gettop( L ) == 0 ) {
 		uint16_t buf[ 3 ];
 		arc4random_buf( buf, sizeof( buf ) );
