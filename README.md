@@ -32,12 +32,9 @@ intended to be a drop in replacement for `math.random`, so it handles
 three cases.
 
 `arc4.random()` returns a random floating point number in the range
-[0,1]. It differs slightly from `math.random()`, which uses the range
-[0,1).
-
-`arc4.random( n )` and `arc4.random( m, n )` return a random integer in
-the range [1,n] and [m,n] respectively. This is identical to the
-behavior of `math.random`.
+[0,1). `arc4.random( n )` and `arc4.random( m, n )` return a random
+integer in the range [1,n] and [m,n] respectively. All three cases match
+the behavior of `math.random`.
 
 `arc4.buf( n )` returns a string of `n` random characters. It is
 suitable for generating private keys and IVs.
