@@ -75,7 +75,7 @@ static int luaarc4_random( lua_State * const L ) {
 }
 
 static int luaarc4_buf( lua_State * const L ) {
-	const long bytes = luaL_checklong( L, 1 );
+	const long bytes = luaL_checkinteger( L, 1 );
 	char * const buf = malloc( bytes );
 
 	if( buf == NULL ) {
