@@ -29,14 +29,11 @@
 #define LUAINT_MAX ( sizeof( lua_Integer ) == 32 ? INT32_MAX : INT64_MAX )
 
 static int luaarc4_random( lua_State * const L ) {
-	/* http://marc.info/?l=openbsd-tech&m=142175806616927&w=2 */
 	if( lua_gettop( L ) == 0 ) {
-		uint16_t buf[ 3 ];
-		arc4random_buf( buf, sizeof( buf ) );
-
-		const double d = ldexp( ( double ) buf[ 0 ], -48 )
-			+ ldexp( ( double ) buf[ 1 ], -32 )
-			+ ldexp( ( double ) buf[ 2 ], -16 );
+		// generate a random 53 bit int, then divide by 2^53
+		const uint64_t r64 = ( ( uint64_t ) arc4random() << 32 ) | arc4random();
+		const uint64_t r53 = r64 & ( ( UINT64_C( 1 ) << 53 ) - 1 );
+		const double d = ( double ) r53 / ( UINT64_C( 1 ) << 53 );
 
 		lua_pushnumber( L, d );
 
