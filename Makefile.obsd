@@ -1,9 +1,0 @@
-LIB = arc4random
-SRCS = src/main.c
-
-CFLAGS += `pkg-config --cflags lua51`
-
-SHLIB_MAJOR = 1
-SHLIB_MINOR = 0
-
-.include <bsd.lib.mk>
