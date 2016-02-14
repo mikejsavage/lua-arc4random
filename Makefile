@@ -15,7 +15,7 @@ debug: CFLAGS += -ggdb3 -UNDEBUG
 debug: all
 
 arc4random.so: $(OBJS)
-	$(CC) -o arc4random.so $(LDFLAGS) $(OBJS)
+	$(CC) -o arc4random.so $(OBJS) $(LDFLAGS)
 
 clean:
 	rm -f arc4random.so
