@@ -26,7 +26,7 @@
 	#define luaL_newlib( L, l ) ( lua_newtable( L ), luaL_register( L, NULL, l ) )
 #endif
 
-#define LUAINT_MAX ( sizeof( lua_Integer ) == 32 ? INT32_MAX : INT64_MAX )
+#define LUAINT_MAX ( sizeof( lua_Integer ) == 4 ? INT32_MAX : INT64_MAX )
 
 static int luaarc4_random( lua_State * const L ) {
 	if( lua_gettop( L ) == 0 ) {
