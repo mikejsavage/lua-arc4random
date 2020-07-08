@@ -12,7 +12,9 @@ else
 	LDFLAGS += -bundle -undefined dynamic_lookup
 endif
 
-ifneq ($(uname),OpenBSD)
+ifeq ($(uname),OpenBSD)
+else ifeq ($(uname),NetBSD)
+else
 	# This is more or less what libressl does
 	# See http://openbsd.cs.toronto.edu/cgi-bin/cvsweb/src/lib/libssl/src/crypto/mem_clr.c?rev=1.4&content-type=text/x-cvsweb-markup
 	CFLAGS += -DOPENSSL_cleanse=explicit_bzero
@@ -30,6 +32,11 @@ ifneq ($(uname),OpenBSD)
 		SRCS += compat/sha/sha512.c
 		SRCS += compat/getentropy/getentropy_linux.c
 		LDFLAGS += -lrt
+	endif
+
+	ifeq ($(uname),SunOS)
+		SRCS += compat/sha/sha512.c
+		SRCS += compat/getentropy/getentropy_solaris.c
 	endif
 
 	ifeq ($(uname),Darwin)
