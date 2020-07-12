@@ -34,10 +34,11 @@ three cases.
 `arc4.random()` returns a random floating point number in the range
 [0,1). `arc4.random( n )` and `arc4.random( m, n )` return a random
 integer in the range [1,n] and [m,n] respectively. All three cases match
-the behavior of `math.random`.
+the behavior of `math.random` so you can do `math.random = arc4.random`
+and everything will keep working.
 
 `arc4.buf( n )` returns a string of `n` random characters. It is
-suitable for generating private keys and IVs.
+suitable for generating private encryption keys and IVs.
 
 Some example code:
 
