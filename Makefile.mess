@@ -19,10 +19,7 @@ else
 	# See http://openbsd.cs.toronto.edu/cgi-bin/cvsweb/src/lib/libssl/src/crypto/mem_clr.c?rev=1.4&content-type=text/x-cvsweb-markup
 	CFLAGS += -DOPENSSL_cleanse=explicit_bzero
 
-	# GCC whines without this. Assume everyone has strndup anyway
-	CFLAGS += -DHAVE_STRNDUP
-
-	CFLAGS += -Iinclude
+	CFLAGS += -Icompat/include
 
 	SRCS += compat/arc4random/arc4random.c
 	SRCS += compat/arc4random/arc4random_uniform.c
