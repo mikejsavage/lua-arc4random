@@ -1,22 +1,8 @@
-all: arc4random.so
+all:
+	luarocks make CFLAGS="-O2 -fPIC -Wall -Wextra" --no-install
 
-include Makefile.mess
-
-SRCS += src/main.c
-
-CFLAGS += -Wall -Wno-pointer-sign
-CFLAGS += -O2 -fPIC -DNDEBUG
-
-LDFLAGS += -lm
-
-OBJS := $(patsubst %.c,%.o,$(SRCS))
-
-debug: CFLAGS += -ggdb3 -UNDEBUG
-debug: all
-
-arc4random.so: $(OBJS)
-	$(CC) -o arc4random.so $(OBJS) $(LDFLAGS)
+debug:
+	luarocks make CFLAGS="-fPIC -g -Wall -Wextra" --no-install
 
 clean:
-	rm -f arc4random.so
-	rm -f $(OBJS)
+	rm -f arc4random.so src/*.o

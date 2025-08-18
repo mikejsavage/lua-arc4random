@@ -1,14 +1,15 @@
 package = "arc4random"
-version = "scm-1"
+version = "1.5-1"
 
 source = {
 	url = "git://github.com/mikejsavage/lua-arc4random.git",
+	tag = "v1.5-1",
 }
 
 description = {
-	summary = "A Lua wrapper for arc4random",
+	summary = "A CSPRNG for Lua",
 	homepage = "http://github.com/mikejsavage/lua-arc4random",
-	license = "ISC",
+	license = "MIT",
 	maintainer = "Mike Savage",
 }
 
@@ -17,17 +18,6 @@ dependencies = {
 }
 
 build = {
-	type = "make",
-
-	install_pass = false,
-
-	build_variables = {
-		LUA_INCDIR = "$(LUA_INCDIR)",
-	},
-
-	install = {
-		lib = {
-			[ "arc4random" ] = "arc4random.so",
-		},
-	},
+    type = "builtin",
+    modules = { arc4random = { "src/main.c", "src/ggentropy.c" } },
 }
